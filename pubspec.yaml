@@ -1,0 +1,28 @@
+name: matchingframe
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment: 
+  sdk: '>=3.0.6 <4.0.0'
+
+dependencies: 
+  cupertino_icons: ^1.0.2
+  flutter_barcode_scanner: ^2.0.0
+  lottie: ^2.6.0
+  http: 1.1.0
+  flutter: 
+    sdk: flutter
+
+dev_dependencies: 
+  flutter_lints: ^2.0.0
+  flutter_test: 
+    sdk: flutter
+
+flutter: 
+  uses-material-design: true
+  assets:
+    - assets/animasi_car.json
+    - assets/animasi_loading.json
+    - assets/animasi_x.json
+    - assets/animasi_ceklis.json
+    - assets/animasi_delivery.json
