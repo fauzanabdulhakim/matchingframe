@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:barcode_scan2/barcode_scan2.dart'; // Import barcode_scan2
 import 'package:lottie/lottie.dart';
 
 void main() {
@@ -37,13 +37,12 @@ class _MyPageState extends State<MyPage> {
   bool isLoading = false;
 
   Future<void> scanBarcode(TextEditingController controller) async {
-    String barcodeScanResult = await FlutterBarcodeScanner.scanBarcode(
-        '#ff6666', 'Batal', true, ScanMode.BARCODE);
-    if (!mounted) return;
-
-    if (barcodeScanResult != '-1') {
+    var result = await BarcodeScanner
+        .scan(); // Menggunakan barcode_scan2 untuk memindai barcode
+    if (result.rawContent.isNotEmpty) {
       setState(() {
-        controller.text = barcodeScanResult;
+        controller.text =
+            result.rawContent; // Menyimpan hasil scan ke dalam TextField
         areBothFieldsFilled = textField1Controller.text.isNotEmpty &&
             textField2Controller.text.isNotEmpty;
       });
@@ -120,7 +119,7 @@ class _MyPageState extends State<MyPage> {
       theme: isDarkTheme ? ThemeData.dark() : ThemeData.light(),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Matching Frame'),
+          title: Text('Matching Barcode'),
           centerTitle: true,
           actions: [
             IconButton(
@@ -144,8 +143,9 @@ class _MyPageState extends State<MyPage> {
                   controller: textField1Controller,
                   onChanged: (value) {
                     setState(() {
-                      areBothFieldsFilled = textField1Controller.text.isNotEmpty &&
-                          textField2Controller.text.isNotEmpty;
+                      areBothFieldsFilled =
+                          textField1Controller.text.isNotEmpty &&
+                              textField2Controller.text.isNotEmpty;
                     });
                   },
                   decoration: InputDecoration(
@@ -166,8 +166,9 @@ class _MyPageState extends State<MyPage> {
                   controller: textField2Controller,
                   onChanged: (value) {
                     setState(() {
-                      areBothFieldsFilled = textField1Controller.text.isNotEmpty &&
-                          textField2Controller.text.isNotEmpty;
+                      areBothFieldsFilled =
+                          textField1Controller.text.isNotEmpty &&
+                              textField2Controller.text.isNotEmpty;
                     });
                   },
                   decoration: InputDecoration(
@@ -197,9 +198,8 @@ class _MyPageState extends State<MyPage> {
                         )
                       : Text('Cek'),
                   style: OutlinedButton.styleFrom(
-                    backgroundColor: areBothFieldsFilled
-                        ? Colors.blue
-                        : Colors.transparent,
+                    backgroundColor:
+                        areBothFieldsFilled ? Colors.blue : Colors.transparent,
                     foregroundColor: areBothFieldsFilled
                         ? Colors.white
                         : Theme.of(context).primaryColor,

@@ -1,4 +1,4 @@
-package com.fauzanabdulhakim.matchingframe
+package com.fauzanabdulhakim.matchingbarcode
 
 import io.flutter.embedding.android.FlutterActivity
 

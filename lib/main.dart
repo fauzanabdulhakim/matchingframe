@@ -55,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             SizedBox(height: 20),
             Text(
-              'Matching Frame',
+              'Matching Barcode',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ],
